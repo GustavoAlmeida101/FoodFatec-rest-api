@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/v1/customer")
@@ -24,6 +25,7 @@ public class CustomerController {
         List<Customer> result = customerService.getInfoCustomers();
         return ResponseEntity.ok().body(result);
     }
+
     @PostMapping(value = "/create")
     public ResponseEntity<Object> saveCustomer(@RequestBody Customer customer) {
         Customer result = customerService.saveCustomer(customer);
@@ -31,9 +33,16 @@ public class CustomerController {
     }
 
     @DeleteMapping(value = "/delete/{idCustomer}")
-    public ResponseEntity<Object> deleteCustomer(@PathVariable Long idCustomer){
-         HashMap<String,Object> result = customerService.deleteCustomer(idCustomer);
-         return  ResponseEntity.ok().body(result);
-     }
+    public ResponseEntity<Object> deleteCustomer(@PathVariable Long idCustomer) {
+        HashMap<String, Object> result = customerService.deleteCustomer(idCustomer);
+        return ResponseEntity.ok().body(result);
+    }
 
+    @GetMapping(value = "/findCustomer/{idCustomer}")
+    public ResponseEntity<Object> findCustomer(@PathVariable Long idCustomer) {
+        Optional<Customer> result = customerService.findCustomerByID(idCustomer);
+        return ResponseEntity.ok().body(result);
+    }
 }
+
+
