@@ -43,6 +43,11 @@ public class CustomerController {
         Optional<Customer> result = customerService.findCustomerByID(idCustomer);
         return ResponseEntity.ok().body(result);
     }
+    @PutMapping(value = "/update")
+    public ResponseEntity<Object> updateCustomer(@RequestBody Customer customer){
+        Customer result = customerService.updateCustomer(customer);
+        return ResponseEntity.ok().body(result);
+    }
 }
 
 
