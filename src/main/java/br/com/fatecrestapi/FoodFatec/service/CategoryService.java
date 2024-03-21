@@ -62,21 +62,19 @@ public class CategoryService {
                         "Categoria não encontrada")));
     }
 
-    public Category updateCategory(Category category){
-        if(validationCategory(category)){
-            if(category.getIdCategory()!=null){
+    public Category updateCategory(Category category) {
+        if (validationCategory(category)) {
+            if (category.getIdCategory() != null) {
                 return categoryRespository.saveAndFlush(category);
-            }
-            else{
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                        "Categoria não encontrada");
+            } else {
+                return null;
             }
 
-        }
-        else{
+        } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    "A categoria está incompleta");
+                    "A categoria não encontrada");
         }
     }
+
 
 }
