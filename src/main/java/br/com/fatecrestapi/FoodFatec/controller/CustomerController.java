@@ -40,7 +40,7 @@ public class CustomerController {
 
     @GetMapping(value = "/findCustomer/{idCustomer}")
     public ResponseEntity<Object> findCustomer(@PathVariable Long idCustomer) {
-        Optional<Customer> result = customerService.findCustomerByID(idCustomer);
+        Optional<Customer> result = customerService.findCustomerById(idCustomer);
         return ResponseEntity.ok().body(result);
     }
     @PutMapping(value = "/update")
